@@ -3,12 +3,12 @@
 require_once 'Banco.php';
 require_once 'Conexao.php';
 
-class Foto extends Banco{
+class Imagem extends Banco{
 
     private $id;
-    private $foto;
-    private $fotoTipo;
-    private $caminhoFoto;
+    private $imagem;
+    private $tipoImagem;
+    private $caminhoImagem;
 
 
     //métodos de acesso
@@ -21,37 +21,29 @@ class Foto extends Banco{
         $this->id = $id;
     }
 
-    public function getFoto(){
-        return $this->foto;
+    public function getImagem(){
+        return $this->imagem;
     }
 
-    public function setFoto($foto){
-        $this->foto = $foto;
-    }
-
-    public function getTipo(){
-        return $this->tipo;
-    }
-
-    public function setTipo($tipo){
-        $this->tipo = $tipo;
+    public function setImagem($imagem){
+        $this->imagem = $imagem;
     }
 
    
-    public function getFotoTipo(){
-        return $this->fotoTipo;
+    public function getTipoImagem(){
+        return $this->tipoImagem;
     }
 
-    public function setFotoTipo($fotoTipo){
-        $this->fotoTipo = $fotoTipo;
+    public function setTipoImagem($tipoImagem){
+        $this->tipoImagem = $tipoImagem;
     }
 
-    public function getCaminhoFoto(){
-        return $this->caminhoFoto;
+    public function getCaminhoImagem(){
+        return $this->caminhoImagem;
     }
 
-    public function setCaminhoFoto($caminhoFoto){
-        $this->caminhoFoto = $caminhoFoto;
+    public function setCaminhoImagem($caminhoImagem){
+        $this->caminhoImagem = $caminhoImagem;
     }
 
 
@@ -63,22 +55,22 @@ class Foto extends Banco{
         if($conn = $conexao->getConection()){
             if($this->id > 0){
                 //cria query de update passando os atributos que serão atualizados
-                $query = "UPDATE foto SET foto = :foto, fotoTipo = :fotoTipo, caminhoFoto = :caminhoFoto  WHERE id = :id";
+                $query = "UPDATE imagem SET imagem = :imagem, tipoImagem = :tipoImagem, caminhoImagem = :caminhoImagem  WHERE id = :id";
                 //Prepara a query para execução
                 $stmt = $conn->prepare($query);
                 //executa a query
                 if ($stmt->execute(
-                    array(':foto' => $this->foto, ':id'=> $this->id, ':fotoTipo' => $this->fotoTipo, 'caminhoFoto' => $this->caminhoFoto))){
+                    array(':imagem' => $this->imagem, ':id'=> $this->id, ':tipoImagem' => $this->tipoImagem, 'caminhoImagem' => $this->caminhoImagem))){
                     $result = $stmt->rowCount();
                 }
             }else{
                 //cria query de inserção passando os atributos que serão armazenados
-                $query = "insert into foto (id,  foto, fotoTipo, caminhoFoto) 
-                values (null,:foto, :fotoTipo, :caminhoFoto)";
+                $query = "insert into imagem (id,  imagem, tipoImagem, caminhoImagem) 
+                values (null,:imagem, :tipoImagem, :caminhoImagem)";
                 //Prepara a query para execução
                 $stmt = $conn->prepare($query);
                 //executa a query
-                if ($stmt->execute(array(':foto' => $this->foto, ':fotoTipo'=>$this->fotoTipo, ':caminhoFoto' => $this->caminhoFoto))) {
+                if ($stmt->execute(array(':imagem' => $this->imagem, ':tipoImagem'=>$this->tipoImagem, ':caminhoImagem' => $this->caminhoImagem))) {
                     $result = $stmt->rowCount();
                 }
             }
@@ -93,7 +85,7 @@ class Foto extends Banco{
         //cria a conexao com o banco de dados
         $conn = $conexao->getConection();
         //cria query de seleção
-        $query = "SELECT * FROM foto where id = :id";
+        $query = "SELECT * FROM imagem where id = :id";
         //Prepara a query para execução
         $stmt = $conn->prepare($query);
         //executa a query
@@ -101,7 +93,7 @@ class Foto extends Banco{
             //verifica se houve algum registro encontrado
             if ($stmt->rowCount() > 0) {
                 //o resultado da busca será retornado como um objeto da classe
-                $result = $stmt->fetchObject(Foto::class);
+                $result = $stmt->fetchObject(Imagem::class);
             }else{
                 $result = false;
             }
@@ -117,7 +109,7 @@ class Foto extends Banco{
         //cria a conexao com o banco de dadosgi
         $conn = $conexao->getConection();
         //cria query de remoção
-        $query = "DELETE FROM foto where id = :id";
+        $query = "DELETE FROM imagem where id = :id";
         //Prepara a query para execução
         $stmt = $conn->prepare($query);
         //executa a query
@@ -133,7 +125,7 @@ class Foto extends Banco{
         //cria a conexao com o banco de dados
         $conn = $conexao->getConection();
         //cria query de seleção
-        $query = "SELECT count(*) FROM foto";
+        $query = "SELECT count(*) FROM imagem";
         //Prepara a query para execução
         $stmt = $conn->prepare($query);
         $count = $stmt->execute();
@@ -150,7 +142,7 @@ class Foto extends Banco{
         //cria a conexao com o banco de dados
         $conn = $conexao->getConection();
         //cria query de seleção
-        $query = "SELECT * FROM foto";
+        $query = "SELECT * FROM imagem";
         //Prepara a query para execução
         $stmt = $conn->prepare($query);
         //Cria um array para receber o resultado da seleção
@@ -158,7 +150,7 @@ class Foto extends Banco{
         //executa a query
         if ($stmt->execute()) {
             //o resultado da busca será retornado como um objeto da classe
-            while ($rs = $stmt->fetchObject(Foto::class)) {
+            while ($rs = $stmt->fetchObject(Imagem::class)) {
                 //armazena esse objeto em uma posição do vetor
                 $result[] = $rs;
             }

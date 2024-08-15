@@ -2,30 +2,30 @@
 ob_start();
 ?>
 <div class="container">
-        <form name="cadFoto" id="cadFoto" action="" method="post" enctype="multipart/form-data">
+        <form name="cadImagem" id="cadImagem" action="" method="post" enctype="multipart/form-data">
             <div class="card" style="top:40px">
                 <div class="card-header">
-                    <span class="card-title">Fotos</span>
+                    <span class="card-title">Imagens</span>
                 </div>
                 <div class="card-body">
                 </div>
                 <div class="form-group form-row">
-                    <label class="col-sm-2 col-form-label text-right">Foto:</label>
-                    <input type="file" class="form-control col-sm-8" name="foto" id="foto"/>
+                    <label class="col-sm-2 col-form-label text-right">Imagem:</label>
+                    <input type="file" class="form-control col-sm-8" name="imagem" id="imagem"/>
                 </div> 
                 <?php
-                    if(isset($foto) && !empty($foto->getCaminhoFoto())){
+                    if(isset($imagem) && !empty($imagem->getCaminhoImagem())){
                 ?>
                 <div class="form-group form-row">
                     <div class="text-center">
-                        <img class="img-thumbnail" style="width: 25%;" src="<?php echo $foto->getCaminhoFoto();?>">
+                        <img class="img-thumbnail" style="width: 25%;" src="<?php echo $imagem->getCaminhoImagem();?>">
                     </div>
                 </div>
                 <?php
                     }
                 ?>
                 <div class="card-footer">
-                    <input type="hidden" name="id" id="id" value="<?php echo isset($foto)?$foto->getId():''; ?>" />
+                    <input type="hidden" name="id" id="id" value="<?php echo isset($imagem)?$imagem->getId():''; ?>" />
                     <input type="submit" class="btn btn-success" name="btnSalvar" id="btnSalvar">
                 </div>
             </div>
@@ -39,13 +39,13 @@ ob_start();
 if(isset($_POST['btnSalvar'])){
 
     //Chama uma função PHP que permite informar a classe e o Método que será acionado
-    if(isset($foto)){
-        call_user_func(array('fotoController','salvar'),$foto->getFoto(),$foto->getFotoTipo());
+    if(isset($imagem)){
+        call_user_func(array('imagemController','salvar'),$imagem->getImagem(),$imagem->getTipoImagem());
     }else{
-        call_user_func(array('fotoController','salvar'));
+        call_user_func(array('imagemController','salvar'));
     }
 
-    header('Location: index.php?action=listar&page=foto');
+    header('Location: index.php?action=listar&page=imagem');
 }
 
 ob_end_flush();

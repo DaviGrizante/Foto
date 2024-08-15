@@ -11,7 +11,7 @@
             Cadastrar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="index.php?page=foto">Fotos</a></li>
+            <li><a class="dropdown-item" href="index.php?page=imagem">Imagens</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -19,7 +19,7 @@
             Listar
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="index.php?page=foto&action=listar">Foto</a></li>
+            <li><a class="dropdown-item" href="index.php?page=imagem&action=listar">Imagem</a></li>
           </ul>
         </li>
       </ul>

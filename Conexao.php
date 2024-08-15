@@ -4,7 +4,7 @@ class Conexao{
     private $servername = "localhost:3306";
     private $username = "root";
     private $password = "HORTETEC_115";
-    private $database = "fotos";
+    private $database = "imagens";
     private $conection;
 
 
